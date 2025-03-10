@@ -1,0 +1,235 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: linear-gradient(90deg, #003366, #006699);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #ffffff;
+    max-height: 60px;
+}
+.navbar-brand{
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffdd57;
+    text-transform: uppercase;
+    margin: auto;
+}
+.collapse{
+    margin-right: 0px;
+    padding-right: 0px;
+}
+.navbar a {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: color 0.3s, transform 0.3s;
+    text-transform: uppercase;
+}
+
+.navbar a:hover {
+    color: #ffdd57;
+    transform: scale(1.1);
+
+} 
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(90deg, #003366, #006699);
+    border-radius: 12px;
+    margin: auto;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    border: 1px solid #E0E0E0; /* Light Gray */
+}
+.welcome-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: rgb(204, 218, 229) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(0, 51, 102, 0.1);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.welcome-card h1 {
+    color: #003366;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-card p {
+    color: #000000;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.quotes {
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.quotes h1{
+    color: #ffdd57;
+}
+.quotes p{
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.auth-buttons .btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 10px 25px;
+    margin: 10px 5px;
+    margin-top: 0px;
+    transition: all 0.3s;
+    border: 2px solid #ffffff;
+    color: #ffdd57;
+}
+
+.auth-buttons .btn:hover {
+    background: #ffdd57;
+    color: #003366;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Features Section */
+.feature-quotes{
+    margin: 100px auto;
+    font-size: 2.5rem;
+    font-style: italic;
+    /* font-weight: bold; */
+    color: #000000;
+    font-family: 'Roboto', sans-serif; 
+    line-height: 1.5;
+    text-align: center;
+}
+
+.features-topic h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-style: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #003366;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: #003366;
+    background: linear-gradient(90deg, #e6f7ff, #ffffff);
+}
+
+.feature-card h3 {
+    margin: 15px 0;
+    font-weight: 600;
+    color: #003366;
+    transition: color 0.3s;
+}
+
+.feature-card h3:hover {
+    color: #ffdd57;
+    text-decoration: none;
+}
+
+.feature-card p {
+    color: #555555;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Footer Styles */
+footer {
+    background: #003366;
+    color: #ffffff;
+    padding: 10px 0;
+    border-top: 2px solid #ffffff;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Social Icons */
+footer .social-icons {
+    margin-top: 5px;
+}
+
+footer .social-icons a {
+    color: #ffffff;
+    font-size: 1 rem;
+    margin: 0 10px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+
+footer .social-icons a:hover {
+    color: #ffdd57;
+    transform: scale(1.2) rotate(10deg);
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+

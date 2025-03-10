@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next-CS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+</head>
+<body>
+    <!-- Navbar Section -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark ">
+            <div class="container-fluid">
+                <h1 class="navbar-brand" href="#">Next-CS</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="welcome-card ">
+                    <h1>Welcome to Next-CS</h1>
+                    <p style="font-family: 'Playfair Display';  font-size: 1.5rem;  margin-top: 20px; ">Your ultimate career guidance platform designed for Computer Science students.</p>
+                    <p style="font-family: 'Playfair Display';  font-size: 1.5rem;  margin-top: 20px; ">Empower your learning journey and achieve <br>
+                        your career goals with us!</p>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex flex-column justify-content-around">
+                <div class="quotes  rounded mb-3" >
+                    <h1 style="margin-top: 0px;">Next-CS</h1>
+                    <p style="color: aliceblue; font-family: 'Playfair Display';  font-size: 1.5rem; margin-top: 30px; ">"The best way to predict the future is to create it."<br>"Programming isn't about what you know it's about what you can figure out."</p>
+                </div>
+                <div class="auth-buttons ">
+                    <a href="{% url 'register' %}" ><button  class="btn btn-outline-primary"><i class="bi bi-box-arrow-in-right"></i> Sign-In</button></a>
+                    <a href="{% url 'login' %}"><button class="btn btn-outline-primary"><i class="bi bi-door-open"></i> Log-In</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<section class="feature-quotes">
+    <p class="feature-quotes">"Unlock your potential with AI-driven guidance ."<br> "Transforming learning experiences one step at a time."</p>
+</section>
+<div class="features-topic">
+<h1 style=" color:  #003366; ">Features</h1>
+</div>
+    <!-- Features Section -->
+    <section class="features-section container my-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card p-4  rounded text-center">
+                    <i class="bi bi-briefcase-fill display-4 text-primary"></i>
+                    <h3>Career Recommendations</h3>
+                    <p>Get AI-driven career suggestions based on your skills and interests.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4  rounded text-center">
+                    <i class="bi bi-book-fill display-4 text-success"></i>
+                    <h3>Learning Platform</h3>
+                    <p>Access learning roadmaps, curated resources, and guides for programming languages.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4  rounded text-center">
+                    <i class="bi bi-lightbulb-fill display-4 text-warning"></i>
+                    <h3>Quiz Hub</h3>
+                    <p>Test your knowledge with interactive quizzes and coding challenges.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4  rounded text-center">
+                    <i class="bi bi-bar-chart-fill display-4 text-danger"></i>
+                    <h3>Job Trends</h3>
+                    <p>Visualize job market trends to stay updated on the latest career opportunities.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4  rounded text-center">
+                    <i class="bi bi-chat-dots-fill display-4 text-info"></i>
+                    <h3>Campus Connect</h3>
+                    <p>Engage with peers, share resources, and stay connected in the student community.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4  rounded text-center">
+                    <i class="bi bi-file-earmark-person-fill display-4 text-secondary"></i>
+                    <h3>Resume Builder</h3>
+                    <p>Create professional resumes tailored to your profile and download them instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class=" text-light text-center p-3">
+        <p>&copy; 2025 Next-CS. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook me-2"></i></a>
+            <a href="#"><i class="bi bi-twitter me-2"></i></a>
+            <a href="#"><i class="bi bi-linkedin me-2"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

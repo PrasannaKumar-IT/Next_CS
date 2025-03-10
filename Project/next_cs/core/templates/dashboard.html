@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <!-- Left: Profile Picture & Username -->
+            <div class="d-flex align-items-center">
+                <img src="static/profile_default.png" alt="Profile" class="rounded-circle" width="40" height="40">
+                <a href="/profile" class="navbar-text ms-2 text-white text-decoration-none">Username</a>
+            </div>
+            
+            <!-- Right: Features Dropdown & Logout -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-3">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Features
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/career-recommendation">Career Recommendation</a></li>
+                        <li><a class="dropdown-item" href="/learning-platform">Learning Platform</a></li>
+                        <li><a class="dropdown-item" href="/quizhub">QuizHub</a></li>
+                        <li><a class="dropdown-item" href="/job-trends">Job Trends</a></li>
+                        <li><a class="dropdown-item" href="/campus-connect">Campus Connect</a></li>
+                        <li><a class="dropdown-item" href="/resume-builder">Resume Builder</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Logout Button -->
+                <a href="/logout" class="btn btn-danger">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+</body>
+</html>
