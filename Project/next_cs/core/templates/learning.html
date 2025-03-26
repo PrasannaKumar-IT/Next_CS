@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/learning.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body style="background-color: #fff8ca;">
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="profile">
+                <img src="{{ user_data.profile_pic|default:'/static/image/default_profile_pic.jpg' }}" alt="Profile Picture">
+                <span>{{ user_data.username }}</span>
+            </div>
+            <div class="menu">
+                
+                <button class="menu-btn">☰</button>
+                <ul class="dropdown">
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="#">Quiz Hub</a></li>
+                    <li><a href="#">Job Trend</a></li>
+                    <li><a href="#">Campus Connect</a></li>
+                    <li><a href="#">Resume Builder</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <h2>Learning Hub</h2>
+    </section>
+    <div class="container mt-4">
+        <ul class="redirect">
+            <div><li><a href="#Roadmaps">Roadmaps</a></li></div>
+            <div><li><a href="#books">Books</a></li></div>
+            <div><li><a href="#youtube-tutorials">youtube-tutorials</a></li></div>
+            <div><li><a href="#online">Online course</a></li></div>
+        </ul>
+        
+    <!-- 📌 Roadmaps Section -->
+    <section id="Roadmaps">
+    <h2 class="section-title">Roadmaps</h2>
+
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/front back.jpg' %}" alt="Frontend Roadmap">
+            <h3>Frontend Development</h3>
+            <p>Step-by-step guide to becoming a professional frontend developer with HTML, CSS, and JavaScript.</p>
+            <a href="{% static 'image/roadmaps/frontend developer.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/c++ back.jpg' %}" alt="Backend Roadmap">
+            <h3>C++ Programming</h3>
+            <p>Master server-side programming, databases, and APIs to build robust backend systems.</p>
+            <a href="{% static 'image/roadmaps/c++.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/full back.jpg' %}" alt="Full Stack Roadmap">
+            <h3>Full Stack Development</h3>
+            <p>Learn both frontend and backend technologies to become a full-stack web developer.</p>
+            <a href="{% static 'image/roadmaps/full stack.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/ai back.jpg' %}" alt="AI Engineer Roadmap">
+            <h3>AI & Machine Learning</h3>
+            <p>Explore machine learning algorithms, AI frameworks, and deep learning techniques.</p>
+            <a href="{% static 'image/roadmaps/Ai engineer.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/da back.jpg' %}" alt="Game Development Roadmap">
+            <h3>Data Analytics</h3>
+            <p>Learn Unity, Unreal Engine, and game design concepts to create immersive experiences.</p>
+            <a href="{% static 'image/roadmaps/data Analytics.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/git back.jpg' %}" alt="SQL & Database Management Roadmap">
+            <h3>Git</h3>
+            <p>Master SQL, NoSQL, and data modeling to manage and optimize databases efficiently.</p>
+            <a href="{% static 'image/roadmaps/git.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/ds back.jpg' %}" alt="Data Science Roadmap">
+            <h3>Data Science</h3>
+            <p>Master data analysis, machine learning, and visualization techniques with Python and R.</p>
+            <a href="{% static 'image/roadmaps/data science.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/cloud back.jpg' %}" alt="Cloud Engineer Roadmap">
+            <h3>Cloud Computing</h3>
+            <p>Understand AWS, Google Cloud, and Azure to design and deploy scalable applications.</p>
+            <a href="{% static 'image/roadmaps/cloud engineer.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/devops back.jpg' %}" alt="DevOps Roadmap">
+            <h3>DevOps Engineering</h3>
+            <p>Learn CI/CD, automation, containerization, and cloud deployment strategies.</p>
+            <a href="{% static 'image/roadmaps/devops.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/cyber back.jpg' %}" alt="Cybersecurity Roadmap">
+            <h3>Cybersecurity</h3>
+            <p>Understand network security, ethical hacking, and cryptography to protect systems.</p>
+            <a href="{% static 'image/roadmaps/cyber security.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/andriod back.jpg' %}" alt="Android Development Roadmap">
+            <h3>Android Development</h3>
+            <p>Develop modern mobile applications using Java, Kotlin, and Jetpack Compose.</p>
+            <a href="{% static 'image/roadmaps/android_developer.gif' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/java back.jpg' %}" alt="iOS Development Roadmap">
+            <h3>Java Programming</h3>
+            <p>Build high-quality iOS apps using Swift and Apple's development tools.</p>
+            <a href="{% static 'image/roadmaps/java developer.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/python back.jpg' %}" alt="Game Development Roadmap">
+            <h3>Python Programming</h3>
+            <p>Learn Unity, Unreal Engine, and game design concepts to create immersive experiences.</p>
+            <a href="{% static 'image/roadmaps/python developer.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/sql back.jpg' %}" alt="SQL & Database Management Roadmap">
+            <h3>Database Management</h3>
+            <p>Master SQL, NoSQL, and data modeling to manage and optimize databases efficiently.</p>
+            <a href="{% static 'image/roadmaps/sql.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/angular back.jpg' %}" alt="Game Development Roadmap">
+            <h3>Angular JS</h3>
+            <p>Learn Unity, Unreal Engine, and game design concepts to create immersive experiences.</p>
+            <a href="{% static 'image/roadmaps/angular.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/react back.jpg' %}" alt="SQL & Database Management Roadmap">
+            <h3>React JS</h3>
+            <p>Master SQL, NoSQL, and data modeling to manage and optimize databases efficiently.</p>
+            <a href="{% static 'image/roadmaps/react.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/js back.jpg' %}" alt="Game Development Roadmap">
+            <h3>JavaScript</h3>
+            <p>Learn Unity, Unreal Engine, and game design concepts to create immersive experiences.</p>
+            <a href="{% static 'image/roadmaps/javascript.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+        <div class="resource-card">
+            <img src="{% static 'image/roadmaps/ruby back.jpg' %}" alt="SQL & Database Management Roadmap">
+            <h3>Ruby Programming</h3>
+            <p>Master SQL, NoSQL, and data modeling to manage and optimize databases efficiently.</p>
+            <a href="{% static 'image/roadmaps/ruby.jpg' %}" target="_blank">View Roadmap</a>
+        </div>
+    </div>
+    </section>
+
+        <!-- 📚 Books Section -->
+    <section id="books">
+<h2 class="section-title"> Books</h2>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Artificial Intelligence Essentials</h3>
+        <p>A complete introduction to AI concepts, algorithms, and real-world applications.</p>
+        <a href="{% static 'notes/AI.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Cloud Computing Fundamentals</h3>
+        <p>Learn about cloud architecture, deployment models, and services like AWS & Azure.</p>
+        <a href="{% static 'notes/cloud.docx' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>C# Programming Guide</h3>
+        <p>An in-depth guide to C# programming with examples and best practices.</p>
+        <a href="{% static 'notes/csharp.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Data Analytics Handbook</h3>
+        <p>A practical approach to data analysis using Python, R, and SQL.</p>
+        <a href="{% static 'notes/data_analyticis.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Frontend Web Development</h3>
+        <p>Comprehensive guide on building responsive and modern web applications.</p>
+        <a href="{% static 'notes/front_end.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Go Language Programming</h3>
+        <p>Learn Go programming language from basics to advanced concepts.</p>
+        <a href="{% static 'notes/go.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Mastering Java</h3>
+        <p>A complete Java programming guide with real-world examples.</p>
+        <a href="{% static 'notes/java.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>JavaScript: The Definitive Guide</h3>
+        <p>Understand JavaScript deeply and master frontend and backend development.</p>
+        <a href="{% static 'notes/javascript.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Machine Learning with Python</h3>
+        <p>Practical insights into machine learning models and AI solutions.</p>
+        <a href="{% static 'notes/ml.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>MySQL Database Management</h3>
+        <p>Master MySQL queries, database design, and optimization techniques.</p>
+        <a href="{% static 'notes/mysql.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>SQL for Data Analysis</h3>
+        <p>Essential guide to writing SQL queries and analyzing large datasets.</p>
+        <a href="{% static 'notes/sql.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>TypeScript for Beginners</h3>
+        <p>A beginner-friendly guide to TypeScript and its applications in web development.</p>
+        <a href="{% static 'notes/typescript.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Advanced Python Techniques</h3>
+        <p>Deep dive into Python programming, covering OOP, data science, and automation.</p>
+        <a href="{% static 'notes/python 2.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Ruby Programming Guide</h3>
+        <p>Comprehensive book on Ruby development, syntax, and frameworks.</p>
+        <a href="{% static 'notes/ruby.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>PHP Web Development</h3>
+        <p>Master PHP and MySQL for building dynamic web applications.</p>
+        <a href="{% static 'notes/php.pdf' %}" download>Download Book</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-book book-icon"></i>
+        <h3>Python for Automation</h3>
+        <p>Learn how to automate tasks using Python scripts and libraries.</p>
+        <a href="{% static 'notes/python 1.pdf' %}" download>Download Book</a>
+    </div>
+</div>
+</section>
+        <!--  YouTube Tutorials -->
+        <section id="youtube-tutorials">
+            <h2 class="section-title">YouTube Tutorials</h2>
+            <div class="grid-container">
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/JMUxmLyrhSk" frameborder="0" allowfullscreen></iframe>
+                    <h3>Python Full Course</h3>
+                    <p>Learn Python from scratch in this complete course.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/rn8Yp6otAh8" frameborder="0" allowfullscreen></iframe>
+                    <h3>JavaScript for Beginners</h3>
+                    <p>A comprehensive JavaScript tutorial for beginners.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/ix9cRaBkVe0" frameborder="0" allowfullscreen></iframe>
+                    <h3>Full-Stack Web Development</h3>
+                    <p>Learn full-stack web development from basics to advanced.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/kGxSyqKbzsc" frameborder="0" allowfullscreen></iframe>
+                    <h3>Data Structures & Algorithms</h3>
+                    <p>Master data structures and algorithms for coding interviews.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/kUMe1FH4CHE" frameborder="0" allowfullscreen></iframe>
+                    <h3>Machine Learning Crash Course</h3>
+                    <p>Get started with machine learning concepts and implementations.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/OXGznpKZ_sA" frameborder="0" allowfullscreen></iframe>
+                    <h3>CSS Flexbox & Grid</h3>
+                    <p>Learn CSS Flexbox and Grid layout for better UI design.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/gfkTfcpWqAY" frameborder="0" allowfullscreen></iframe>
+                    <h3>React.js Crash Course</h3>
+                    <p>Understand React fundamentals and build dynamic applications.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/RGOj5yH7evk" frameborder="0" allowfullscreen></iframe>
+                    <h3>Git & GitHub for Beginners</h3>
+                    <p>Master version control using Git and GitHub.</p>
+                </div>
+        
+                <div class="resource-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/EN4fEbcFZ_E" frameborder="0" allowfullscreen></iframe>
+                    <h3>Cloud Computing Fundamentals</h3>
+                    <p>Introduction to cloud computing and deployment strategies.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 🎓 Online Courses -->
+         <section id="online">
+<h2 class="section-title">🎓 Online Courses</h2>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-laptop-code course-icon"></i>
+        <h3>Full-Stack Web Development</h3>
+        <p>Master frontend & backend development with React, Node.js, and databases.</p>
+        <a href="https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd0044" target="_blank">View Course</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-database course-icon"></i>
+        <h3>SQL & Database Management</h3>
+        <p>Learn SQL, relational databases, and how to manage large-scale data.</p>
+        <a href="https://www.coursera.org/learn/databases" target="_blank">View Course</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-brain course-icon"></i>
+        <h3>Machine Learning Specialization</h3>
+        <p>Learn Machine Learning concepts using Python, TensorFlow, and Scikit-learn.</p>
+        <a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank">View Course</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-lock course-icon"></i>
+        <h3>Cybersecurity Fundamentals</h3>
+        <p>Understand cybersecurity principles, ethical hacking, and penetration testing.</p>
+        <a href="https://www.udemy.com/course/the-complete-cyber-security-course-hacker/" target="_blank">View Course</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-robot course-icon"></i>
+        <h3>Artificial Intelligence & Deep Learning</h3>
+        <p>Explore neural networks, deep learning, and AI applications.</p>
+        <a href="https://www.udacity.com/course/intro-to-tensorflow-for-deep-learning--ud187" target="_blank">View Course</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-cloud course-icon"></i>
+        <h3>Cloud Computing with AWS</h3>
+        <p>Learn AWS services, cloud architecture, and cloud security best practices.</p>
+        <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/" target="_blank">View Course</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-mobile-alt course-icon"></i>
+        <h3>Android App Development</h3>
+        <p>Develop Android apps using Java, Kotlin, and Jetpack Compose.</p>
+        <a href="https://developer.android.com/courses/android-basics-compose/course" target="_blank">View Course</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-desktop course-icon"></i>
+        <h3>UI/UX Design Principles</h3>
+        <p>Master UI/UX design with Figma, Adobe XD, and user experience principles.</p>
+        <a href="https://www.coursera.org/specializations/ui-ux-design" target="_blank">View Course</a>
+    </div>
+</div>
+
+<div class="grid-container">
+    <div class="resource-card">
+        <i class="fas fa-terminal course-icon"></i>
+        <h3>DevOps & Continuous Integration</h3>
+        <p>Learn Kubernetes, Docker, CI/CD pipelines, and cloud automation.</p>
+        <a href="https://www.edx.org/course/devops-for-developers" target="_blank">View Course</a>
+    </div>
+    <div class="resource-card">
+        <i class="fas fa-code course-icon"></i>
+        <h3>Java Programming for Beginners</h3>
+        <p>Start programming with Java and build real-world applications.</p>
+        <a href="https://www.udemy.com/course/java-the-complete-java-developer-course/" target="_blank">View Course</a>
+    </div>
+</div>
+</div>
+</section>
+<!-- Footer Section -->
+<footer class=" text-light text-center p-3">
+    <p>&copy; 2025 Next-CS. All rights reserved.</p>
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook me-2"></i></a>
+        <a href="#"><i class="bi bi-twitter me-2"></i></a>
+        <a href="#"><i class="bi bi-linkedin me-2"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+    </div>
+</footer>
+
+
+</body>
+</html>

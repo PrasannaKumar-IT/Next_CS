@@ -1,0 +1,375 @@
+/* ============================
+   General Styles
+============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);
+    color: #264653;
+    margin: 0;
+    padding: 0;
+}
+/* ====================================
+   Global Styles & Base Reset
+==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);/* Soft Cream */
+    color: #264653; /* Deep Navy */
+    line-height: 1.6;
+}
+
+/* ====================================
+   Header and Navigation
+==================================== */
+header {
+    background: linear-gradient(90deg, #2a9d8f, #264653);  /* Primary: Teal Green */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header .profile {
+    display: flex;
+    align-items: center;
+}
+
+header .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Navbar Menu Icon on Right */
+header .menu {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+header .menu-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Dropdown Width Adjustment */
+header .menu .dropdown {
+    list-style: none;
+    padding: 0;
+    display: none;
+    background: linear-gradient(90deg, #2a9d8f, #264653); /* Primary */
+    position: absolute;
+    right: 0;
+    top: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto; 
+    min-width: 160px;
+    z-index: 1000;
+}
+
+header .menu .dropdown li {
+    padding: 10px 15px;
+}
+
+header .menu .dropdown li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+header .menu .dropdown li:hover {
+    background: #e76f51; /* Secondary: Warm Coral */
+}
+
+header .menu:hover .dropdown {
+    display: block;
+}
+
+
+
+
+/* ====================================
+   Enhanced Welcome Section
+==================================== */
+.welcome {
+    text-align: center;
+    padding: 60px 30px; /* More padding inside */
+    margin: 50px auto;  /* White space around */
+    width: 90%; /* Limits the width for better spacing */
+    max-width: 1200px; /* Ensures it doesn't stretch too much */
+    background: linear-gradient(135deg, #2a9d8f, #e76f51); /* Gradient */
+    color: white;
+    font-size: 1.8rem;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); /* Soft Glow */
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+    z-index: 1;
+}
+
+/* Glowing Border Effect */
+.welcome::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 0;
+}
+
+/* Welcome Title */
+.welcome h2 {
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Motivational Quote */
+.welcome p {
+    font-size: 24px;
+    font-style: italic;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .welcome {
+        padding: 40px 20px;
+        font-size: 1.4rem;
+    }
+
+    .welcome h2 {
+        font-size: 36px;
+    }
+
+    .welcome p {
+        font-size: 20px;
+    }
+}
+/* Redirect Navigation Styling */
+.redirect {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centers the menu */
+    padding: 15px;
+    border-radius: 12px;
+    margin: 0 auto;
+    width: fit-content; /* Ensures it fits content */
+}
+
+
+.redirect a {
+    text-decoration: none;
+    color: #2a9d8f; /* Light yellow text */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.4s ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #2a9d8f;
+}
+
+.redirect a:hover {
+    background-color: #e76f51; /* Warm coral on hover */
+    color: white;
+    transform: scale(1.1); /* Slight zoom effect */
+    border-color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+.redirect div{
+    margin: 0 20px;
+
+}
+
+/* ============================
+   Section Titles
+============================ */
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #e76f51;
+    margin: 60px 0 30px; /* Increased spacing */
+}
+
+/* ============================
+   Grid Layout for Resources
+============================ */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted width */
+    gap: 30px; /* Increased spacing between cards */
+    justify-content: center;
+    padding: 20px;
+    
+}
+
+/* ============================
+   Resource Cards Styling
+============================ */
+.resource-card {
+    background: #ffffff;
+    padding: 25px; /* Increased padding */
+    border-radius: 12px; /* Rounded corners */
+    text-align: center;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 20px; /* Added bottom margin */
+}
+.resource-card img{
+   max-height: 375px;
+   width: 250px;
+   min-height: 375px;
+   
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Icons for Books, Docs, Courses */
+.resource-card i {
+    font-size: 45px;
+    margin-bottom: 15px; /* Increased spacing */
+    color: #2a9d8f;
+}
+
+.resource-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.resource-card h3 {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.resource-card p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px; /* Added spacing */
+}
+
+/* Buttons for Links */
+.resource-card a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    background: #2a9d8f;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.resource-card a:hover {
+    background: #e76f51;
+}
+
+/* ====================================
+   Footer Styles
+==================================== */
+/* Footer Styles */
+footer {
+    background: linear-gradient(90deg, #2a9d8f, #264653); /* Teal Green */
+    color: #ffffff;
+    padding: 10px 0;
+    border-top: 2px solid #ffffff;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    margin: 0;
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Social Icons */
+footer .social-icons {
+    margin-top: 5px;
+}
+
+footer .social-icons a {
+    color: #ffffff;
+    font-size: 1rem;
+    margin: 0 10px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+
+footer .social-icons a:hover {
+    color: #ffdd57; /* Light Yellow */
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ============================
+   Responsive Design
+============================ */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .resource-card {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,125 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fefae0; /* Soft Cream */
+    margin: 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a9d8f;
+    padding: 5px 1rem;
+    color: white;
+    margin-bottom: 30px;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+.nav-links li {
+    display: inline;
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+header h2 {
+    color: #264653;
+    font-size: 28px;
+}
+
+/* Dashboard Cards */
+/* Dashboard Cards */
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    gap: 15px; /* Adds spacing between the cards */
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 23%; /* Ensures 4 cards fit in one row */
+    border-radius: 12px; /* Softer rounded edges */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #264653;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2a9d8f; /* Teal Green */
+    margin-bottom: 10px;
+}
+
+/* Color-coded card styles */
+.card:nth-child(1) p { color: #007bff; } /* Blue */
+.card:nth-child(2) p { color: #ffcc00; } /* Yellow */
+.card:nth-child(3) p { color: #28a745; } /* Green */
+.card:nth-child(4) p { color: #dc3545; } /* Red */
+
+/* Manage Button */
+.manage-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.blue { background-color: #007bff; }
+.yellow { background-color: #ffcc00; }
+.green { background-color: #28a745; }
+.red { background-color: #dc3545; }
+
+.manage-btn:hover {
+    opacity: 0.85;
+}
+
+
+/* Chart */
+.chart-container {
+    margin-top: 40px;
+    background: white;
+    padding: 15px;
+    width: 60%;  /* Reduced width */
+    max-width: 600px; /* Set max-width */
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin-right: auto;
+}

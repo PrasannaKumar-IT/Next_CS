@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Next-CS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo">Next-CS Admin</h1>
+        <ul class="nav-links">
+            <li><i class="fas fa-tachometer-alt" style="margin-right: 3px;"></i><a href="{% url 'login' %}" style="margin-right: 3px;">User Login</a></li>
+            <li><i class="fas fa-users"></i><a href="/admin" style="margin-right: 3px;">Edit User</a></li>
+            <li><i class="fas fa-sign-out-alt"></i> <a href="{% url 'home' %}" style="margin-right: 3px;">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h2>Admin Dashboard</h2>
+        </header>
+
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>{{ total_users }}</p>
+            </div>
+            <div class="card">
+                <h3>New Applications</h3>
+                <p>{{ applications }}</p>
+            </div>
+            <div class="card">
+                <h3>Growth Rate</h3>
+                <p>{{ growth_rate }}%</p>
+            </div>
+            <div class="card">
+                <h3>Usage Sessions</h3>
+                <p>{{ usage }}</p>
+            </div>
+        </div>
+
+        <!-- User Growth Chart -->
+        <div class="chart-container">
+            <canvas id="userGrowthChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        fetch("{% url 'user_growth_chart' %}")
+        .then(response => response.json())
+        .then(data => {
+            new Chart(document.getElementById("userGrowthChart"), {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'User Growth',
+                        data: data.data,
+                        borderColor: '#2a9d8f',
+                        backgroundColor: 'rgba(42, 157, 143, 0.2)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
