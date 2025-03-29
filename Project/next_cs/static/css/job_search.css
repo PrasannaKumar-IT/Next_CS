@@ -1,22 +1,5 @@
-/* ============================
-   General Styles
-============================ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);
-    color: #264653;
-    margin: 0;
-    padding: 0;
-}
-/* ====================================
-   Global Styles & Base Reset
-==================================== */
+/* Import Bootstrap */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
 * {
     margin: 0;
     padding: 0;
@@ -104,8 +87,6 @@ header .menu:hover .dropdown {
 }
 
 
-
-
 /* ====================================
    Enhanced Welcome Section
 ==================================== */
@@ -149,15 +130,6 @@ header .menu:hover .dropdown {
     z-index: 1;
 }
 
-/* Motivational Quote */
-.welcome p {
-    font-size: 24px;
-    font-style: italic;
-    opacity: 0.9;
-    position: relative;
-    z-index: 1;
-}
-
 /* Fade-in Animation */
 @keyframes fadeIn {
     from {
@@ -185,117 +157,62 @@ header .menu:hover .dropdown {
         font-size: 20px;
     }
 }
-/* Redirect Navigation Styling */
-.redirect {
-    list-style: none;
+
+/* Filter Container */
+.filter-container {
     display: flex;
-    justify-content: center; /* Centers the menu */
-    padding: 15px;
-    border-radius: 12px;
-    margin: 0 auto;
-    width: fit-content; /* Ensures it fits content */
-}
-
-
-.redirect a {
-    text-decoration: none;
-    color: #2a9d8f; /* Light yellow text */
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 20px;
-    border-radius: 8px;
-    transition: all 0.4s ease-in-out;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid #2a9d8f;
-}
-
-.redirect a:hover {
-    background-color: #e76f51; /* Warm coral on hover */
-    color: white;
-    transform: scale(1.1); /* Slight zoom effect */
-    border-color: white;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-.redirect div{
-    margin: 0 20px;
-
-}
-
-/* ============================
-   Section Titles
-============================ */
-.section-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #e76f51;
-    margin: 60px 0 30px; /* Increased spacing */
-}
-
-/* ============================
-   Grid Layout for Resources
-============================ */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted width */
-    gap: 30px; /* Increased spacing between cards */
     justify-content: center;
+    gap: 15px;
     padding: 20px;
-    
+    flex-wrap: wrap;
 }
 
-/* ============================
-   Resource Cards Styling
-============================ */
-.resource-card {
-    background: #ffffff;
-    padding: 25px; /* Increased padding */
-    border-radius: 12px; /* Rounded corners */
+.filter-container select {
+    width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Job List */
+.job-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusts based on screen size */
+    gap: 30px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Job Card */
+.job-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: all 0.3s ease-in-out;
-    margin-bottom: 20px; /* Added bottom margin */
-}
-.resource-card img{
-   max-height: 375px;
-   width: 250px;
-   min-height: 375px;
-   
+    transition: 0.3s;
 }
 
-.resource-card:hover {
+.job-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     border-color: #003366;
     background: linear-gradient(90deg, #e6f7ff, #ffffff);
 }
 
-/* Icons for Books, Docs, Courses */
-.resource-card i {
-    font-size: 45px;
-    margin-bottom: 15px; /* Increased spacing */
-    color: #2a9d8f;
-}
-
-.resource-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.resource-card h3 {
+.job-card h3 {
+    color: #003366;
     font-size: 20px;
-    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
-.resource-card p {
-    font-size: 15px;
+.job-card p {
+    font-size: 14px;
     color: #555;
-    margin-bottom: 15px; /* Added spacing */
 }
 
-/* Buttons for Links */
-.resource-card a {
+.apply-btn {
     display: inline-block;
     background: #ffdd57;
     color: black;
@@ -304,16 +221,32 @@ header .menu:hover .dropdown {
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
-    transition: background 0.3s;
 }
 
-.resource-card a:hover {
+.apply-btn:hover {
     background: #ffc107;
 }
 
-/* ====================================
-   Footer Styles
-==================================== */
+/* Responsive Grid for 3 Cards Per Row */
+@media (min-width: 992px) {
+    .job-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Medium screens (2 cards per row) */
+@media (max-width: 991px) {
+    .job-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small screens (1 card per row) */
+@media (max-width: 600px) {
+    .job-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
 /* Footer Styles */
 footer {
     background: linear-gradient(90deg, #2a9d8f, #264653); /* Teal Green */

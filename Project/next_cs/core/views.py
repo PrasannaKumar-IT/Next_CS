@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from django.http import JsonResponse
-from .models import CustomUser, QuizScore, UserConnection
-from pytrends.request import TrendReq
+from django.views import View
+from .models import CustomUser, QuizScore
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model  # ✅ Import this
 import requests
@@ -255,3 +255,67 @@ def user_growth_chart(request):
 def admin_logout(request):
     logout(request)
     return redirect('admin_login')
+
+@login_required
+def job_search(request):
+    url = "https://jsearch.p.rapidapi.com/search"
+    headers = {
+        "X-RapidAPI-Key": "2ad7f2b383msh67846609d0cc1c2p19b334jsnc560b5ad4036",  # Replace with your actual API key
+        "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
+    }
+
+    # Corrected query for all CS-related jobs in India
+    query = "Computer Science Jobs in India"
+
+    params = {
+        "query": query,
+        "country": "IN",  # ✅ FIXED: Use correct country code for India
+        "page": "4",
+        "num_pages": "6",
+        "language": "en"
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    # Check API response status
+    if response.status_code != 200:
+        print(f"API Error: {response.status_code} - {response.text}")
+        return render(request, "job_search.html", {"jobs": [], "unique_locations": [], "unique_job_roles": []})
+
+    # Extract jobs from response
+    jobs = response.json().get("data", [])
+
+    job_list = []
+    locations = set()
+    job_roles = set()
+
+    for job in jobs:
+        # Get location safely
+        location = job.get("job_city", "").strip() if job.get("job_city") else "Location Not Provided"
+        locations.add(location)
+
+        # Get job title safely
+        job_title = job.get("job_title", "").strip() if job.get("job_title") else "Unknown Role"
+        job_roles.add(job_title)
+
+        job_list.append({
+            "job_title": job_title,
+            "company_name": job.get("employer_name", "Unknown Company"),
+            "location": location,
+            "job_apply_link": job.get("job_apply_link", "#")
+        })
+
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+
+
+    return render(request, "job_search.html", {
+        "jobs": job_list,
+        "unique_locations": sorted(locations),
+        "unique_job_roles": sorted(job_roles),
+        "user_data": user_data
+    })
