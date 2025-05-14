@@ -41,6 +41,27 @@ body {
     font-size: 2rem;
     color: gold;
 }
+.profile {
+    display: flex;
+    align-items: center;
+}
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.welcome-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.welcome-logo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
 /* Welcome Section */
 .welcome-section {
     text-align: center;
@@ -57,9 +78,11 @@ body {
     box-shadow: rgb(204, 218, 229) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     text-align: center;
     padding: 20px;
+    padding: 25px auto;
     position: relative;
     overflow: hidden;
-    min-height: 300px;
+    min-height: 350px;
+    margin: 30px auto;
 }
 
 .welcome-card::before {
@@ -80,6 +103,7 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
 }
 
 .welcome-card p {
@@ -90,7 +114,7 @@ body {
 
 .quotes {
     color: #ffffff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     border-radius: 10px;
     font-size: 1.2rem;

@@ -1,0 +1,274 @@
+
+/* ====================================
+   Global Styles & Base Reset
+==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);/* Soft Cream */
+    color: #264653; /* Deep Navy */
+    line-height: 1.6;
+}
+
+/* ====================================
+   Header and Navigation
+==================================== */
+header {
+    background: linear-gradient(90deg, #2a9d8f, #264653);  /* Primary: Teal Green */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header .profile {
+    display: flex;
+    align-items: center;
+}
+
+header .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Navbar Menu Icon on Right */
+header .menu {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+header .menu-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Dropdown Width Adjustment */
+header .menu .dropdown {
+    list-style: none;
+    padding: 0;
+    display: none;
+    background: linear-gradient(90deg, #2a9d8f, #264653); /* Primary */
+    position: absolute;
+    right: 0;
+    top: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto; 
+    min-width: 160px;
+    z-index: 1000;
+}
+
+header .menu .dropdown li {
+    padding: 10px 15px;
+}
+
+header .menu .dropdown li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+header .menu .dropdown li:hover {
+    background: #e76f51; /* Secondary: Warm Coral */
+}
+
+header .menu:hover .dropdown {
+    display: block;
+}
+
+
+/* Welcome Title */
+.welcome {
+    text-align: center;
+    padding: 30px 30px; /* More padding inside */
+    margin: 50px auto;  /* White space around */
+    width: 90%; /* Limits the width for better spacing */
+    max-width: 1200px; /* Ensures it doesn't stretch too much */
+    background: linear-gradient(135deg, #2a9d8f, #e76f51); /* Gradient */
+    color: white;
+    font-size: 1.8rem;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); /* Soft Glow */
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Glowing Border Effect */
+.welcome::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 0;
+}
+
+.welcome h2 {
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Motivational Quote */
+.welcome p {
+    font-size: 24px;
+    font-style: italic;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .welcome {
+        padding: 40px 20px;
+        font-size: 1.4rem;
+    }
+
+    .welcome h2 {
+        font-size: 36px;
+    }
+
+    .welcome p {
+        font-size: 20px;
+    }
+}
+
+.user-card {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .user-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .profile-pic {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+    margin-right: 10px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+
+  .btn-connect {
+    min-width: 100px;
+  }
+ 
+/* Footer Styles */
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #2a9d8f, #264653);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Social Icons */
+footer .social-icons {
+    margin-top: 5px;
+}
+
+footer .social-icons a {
+    color: #ffffff;
+    font-size: 1rem;
+    margin: 0 10px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+
+footer .social-icons a:hover {
+    color: #ffdd57; /* Light Yellow */
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ============================
+   Responsive Design
+============================ */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .resource-card {
+        padding: 20px;
+    }
+}
+.inbox-icon {
+    color: white;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.inbox-icon:hover {
+    color: #ffdd57;
+    transform: scale(1.2);
+}

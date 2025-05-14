@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="{% static 'image/Next-cs logo.png' %}" type="image/x-icon">
+  <title>Next-cs | Connect Campus</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/new_connection.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="profile">
+        <img src="{{ user_data.profile_pic|default:'/static/image/default profile pic.jpg' }}" alt="Profile Picture">
+        <span>{{ user_data.username }}</span>
+    </div>
+        <div class="menu">
+          
+            <button class="menu-btn">☰</button>
+            <ul class="dropdown">
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'learning_hub' %}">Learning Hub</a></li>
+                <li><a href="{% url 'quiz_categories' %}">Quiz Hub</a></li>
+                <li><a href="{% url 'job_search' %}">Job Search</a></li>
+                <li><a href="{% url 'resume_builder' %}">Resume Builder</a></li>
+    
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container py-5">
+  <section class="welcome">
+    <h2>New Connections</h2>
+</section>
+  <!-- Search -->
+  <form method="get" class="mb-4 d-flex">
+    <input type="text" name="q" class="form-control me-2" placeholder="Search by username or email" value="{{ request.GET.q }}">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+  </form>
+
+  <!-- User Cards -->
+  <div class="row">
+    {% for user in users %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm user-card p-3">
+          <div class="d-flex align-items-center">
+
+            <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}/static/image/default profile pic.jpg{% endif %}" class="user-avatar rounded-circle profile-pic"  alt="Avatar">
+
+            <div class="flex-grow-1">
+              <div class="card-title fw-semibold">{{ user.username }}</div>
+              <div class="card-text">{{ user.university|default:"No university info" }}</div>
+            </div>
+            <div>
+              {% if user.id in connected_user_ids %}
+                <span class="badge bg-success">Connected</span>
+              {% elif user.id in pending_receiver_ids %}
+                <span class="badge bg-warning text-dark">Pending</span>
+              {% else %}
+                <a href="{% url 'send-request' user.id %}" class="btn btn-sm btn-outline-success btn-connect">Connect</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No users found.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Incoming Requests Section -->
+  {% if incoming_requests %}
+    <hr class="my-5">
+    <h4>Incoming Requests</h4>
+    <ul class="list-group">
+      {% for request in incoming_requests %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ request.sender.username }} wants to connect
+          <div>
+            <a href="{% url 'accept-request' request.id %}" class="btn btn-sm btn-primary me-2">Accept</a>
+            <a href="{% url 'reject-request' request.id %}" class="btn btn-sm btn-outline-danger">Reject</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+<div class="d-flex justify-content-center mb-3">
+  <a href="{% url 'chat' user.id %}" class="btn btn-primary">
+    <i class="bi bi-chat-dots-fill me-1"></i> Go to Messages
+  </a>
+</div>
+<footer class=" text-light text-center p-3">
+  <p>&copy; 2025 Next-CS. All rights reserved.</p>
+  <div class="social-icons">
+      <a href="#"><i class="bi bi-facebook me-2"></i></a>
+      <a href="#"><i class="bi bi-twitter me-2"></i></a>
+      <a href="#"><i class="bi bi-linkedin me-2"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

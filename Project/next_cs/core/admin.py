@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, QuizScore, UserConnection
+from .models import CustomUser, QuizScore, UserConnection,ConnectionRequest
 
 
 @admin.register(CustomUser)
@@ -15,9 +15,10 @@ class QuizScoreAdmin(admin.ModelAdmin):
     list_filter = ("quiz_name", "score")  
     search_fields = ("user__username", "quiz_name")  
 
-@admin.register(UserConnection)
-class UserConnectionAdmin(admin.ModelAdmin):
-    list_display = ('user', 'connection', 'connected_at')
-    search_fields = ('user__username', 'connection__username')
-    list_filter = ('connected_at',)
+
+from django.contrib import admin
+from .models import QuizCategory, QuizQuestion
+
+admin.site.register(QuizCategory)
+admin.site.register(QuizQuestion)
 

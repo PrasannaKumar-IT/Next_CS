@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="{% static 'image/Next-cs logo.png' %}" type="image/x-icon">
+  <title>Quiz Result  | {{ category.name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --success: #16a34a;
+      --danger: #dc2626;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    .result-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .result-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .score {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .feedback {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #4b5563;
+    }
+
+    .actions a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+      transition: background 0.2s;
+    }
+
+    .actions a.learn {
+      background-color: var(--primary);
+    }
+
+    .actions a.learn:hover {
+      background-color: #4338ca;
+    }
+
+    .actions a.retry {
+      background-color: var(--success);
+    }
+
+    .actions a.retry:hover {
+      background-color: #15803d;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-card">
+    <h2>Quiz Results – {{ category.name }}</h2>
+    <div class="score">{{ score }} / {{ total }}</div>
+    <div class="feedback">{{ suggestion_text }}</div>
+    <div class="actions">
+      <a href="{% url 'learning_hub' %}" class="learn">Continue Learning</a>
+      <a href="{% url 'quiz_categories' %}" class="retry">Try Another Quiz</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,23 +1,17 @@
-/* Import Bootstrap */
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);/* Soft Cream */
-    color: #264653; /* Deep Navy */
+    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);
+    color: #264653; 
     line-height: 1.6;
 }
-
-/* ====================================
-   Header and Navigation
-==================================== */
 header {
-    background: linear-gradient(90deg, #2a9d8f, #264653);  /* Primary: Teal Green */
+    background: linear-gradient(90deg, #2a9d8f, #264653); 
     color: white;
     padding: 10px 20px;
     display: flex;
@@ -25,26 +19,21 @@ header {
     align-items: center;
     position: relative;
 }
-
 header .profile {
     display: flex;
     align-items: center;
 }
-
 header .profile img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
 }
-
-/* Navbar Menu Icon on Right */
 header .menu {
     position: absolute;
     right: 20px;
     top: 10px;
 }
-
 header .menu-btn {
     background: transparent;
     border: none;
@@ -52,8 +41,6 @@ header .menu-btn {
     font-size: 1.5rem;
     cursor: pointer;
 }
-
-/* Dropdown Width Adjustment */
 header .menu .dropdown {
     list-style: none;
     padding: 0;
@@ -67,17 +54,14 @@ header .menu .dropdown {
     min-width: 160px;
     z-index: 1000;
 }
-
 header .menu .dropdown li {
     padding: 10px 15px;
 }
-
 header .menu .dropdown li a {
     text-decoration: none;
     color: white;
     display: block;
 }
-
 header .menu .dropdown li:hover {
     background: #e76f51; /* Secondary: Warm Coral */
 }
@@ -249,15 +233,16 @@ header .menu:hover .dropdown {
 }
 /* Footer Styles */
 footer {
-    background: linear-gradient(90deg, #2a9d8f, #264653); /* Teal Green */
-    color: #ffffff;
-    padding: 10px 0;
-    border-top: 2px solid #ffffff;
-    width: 100%;
-    bottom: 0;
-    text-align: center;
-    margin: 0;
     position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #2a9d8f, #264653); /* Teal Green and Deep Navy */ /* Adjust as per your theme */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+    margin-top: 100px;
 }
 
 footer p {
@@ -285,6 +270,7 @@ footer .social-icons a:hover {
     transform: scale(1.2) rotate(10deg);
 }
 
+
 /* Animation */
 @keyframes fadeIn {
     0% {
@@ -292,19 +278,5 @@ footer .social-icons a:hover {
     }
     100% {
         opacity: 1;
-    }
-}
-
-/* ============================
-   Responsive Design
-============================ */
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-    }
-    
-    .resource-card {
-        padding: 20px;
     }
 }

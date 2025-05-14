@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Template 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+            background-color: #f4f4f9;
+            color: #2c3e50;
+        }
+        h1, h2 {
+            color: #1a237e;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 5px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ resume.name }}</h1>
+    <p>Email: {{ resume.email }} | Phone: {{ resume.phone }} | Address: {{ resume.address }}</p>
+
+    <div class="section">
+        <h2>Education</h2>
+        <p class="highlight">School:</p>
+        <p>I completed my schooling at {{ resume.school_name }} with a percentage of {{ resume.school_percentage }}% in the year {{ resume.school_year }}.</p>
+        <p class="highlight">College:</p>
+        <p>I pursued my degree at {{ resume.college_name }}, where I secured {{ resume.college_percentage }}% and completed my graduation in {{ resume.college_year }}.</p>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        {% if resume.project_title_1 %}
+        <p><strong>{{ resume.project_title_1 }}</strong>: {{ resume.project_description_1 }}</p>
+        {% endif %}
+        {% if resume.project_title_2 %}
+        <p><strong>{{ resume.project_title_2 }}</strong>: {{ resume.project_description_2 }}</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Certifications</h2>
+        {% if resume.certification_1 %}
+        <p>- {{ resume.certification_1 }}</p>
+        {% endif %}
+        {% if resume.certification_2 %}
+        <p>- {{ resume.certification_2 }}</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <p><strong>Programming Skills:</strong> {{ resume.skills }}</p>
+        <p><strong>Soft Skills:</strong> {{ resume.soft_skills }}</p>
+        <p><strong>Languages Known:</strong> {{ resume.languages }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Achievements</h2>
+        <p>{{ resume.achievements }}</p>
+    </div>
+</body>
+</html>

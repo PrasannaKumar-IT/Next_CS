@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resume.name }} - Resume</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: #2c3e50;
+            background: #ffffff;
+            margin: 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+            color: #1a237e;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #3949ab;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #0d47a1;
+        }
+
+        .info {
+            margin-bottom: 5px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        img {
+            float: right;
+            height: 120px;
+            width: 120px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        ul li {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="clearfix">
+        <h1>{{ resume.name }}</h1>
+        {% if resume.profile_pic %}
+            <img src="{{ resume.profile_pic.url }}" alt="Profile Picture">
+        {% endif %}
+        <div class="info">
+            <span class="label">Email:</span> {{ resume.email }}<br>
+            <span class="label">Phone:</span> {{ resume.phone }}<br>
+            <span class="label">Address:</span> {{ resume.address }}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <p><span class="highlight">School:</span> {{ resume.school_name }} ({{ resume.school_year }}) - {{ resume.school_percentage }}%</p>
+        <p><span class="highlight">College:</span> {{ resume.college_name }} ({{ resume.college_year }}) - {{ resume.college_percentage }}%</p>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        {% if resume.project_title_1 %}
+            <p><strong>{{ resume.project_title_1 }}</strong>: {{ resume.project_description_1 }}</p>
+        {% endif %}
+        {% if resume.project_title_2 %}
+            <p><strong>{{ resume.project_title_2 }}</strong>: {{ resume.project_description_2 }}</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Certifications</h2>
+        <ul>
+            {% if resume.certification_1 %}<li>{{ resume.certification_1 }}</li>{% endif %}
+            {% if resume.certification_2 %}<li>{{ resume.certification_2 }}</li>{% endif %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <p><span class="highlight">Technical:</span> {{ resume.skills }}</p>
+        <p><span class="highlight">Soft Skills:</span> {{ resume.soft_skills }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Languages</h2>
+        <p>{{ resume.languages }}</p>
+    </div>
+
+    {% if resume.achievements %}
+        <div class="section">
+            <h2>Achievements</h2>
+            <p>{{ resume.achievements }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -76,7 +76,7 @@ header .menu .dropdown li {
 header .menu .dropdown li a {
     text-decoration: none;
     color: white;
-    display: block;
+    display: block; 
 }
 
 header .menu .dropdown li:hover {
@@ -283,6 +283,7 @@ section h3{
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.12); /* Soft shadow */
     max-width: 320px;
     min-height: 220px;
+    max-height: 220px;
     text-align: center;
     padding: 20px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -386,6 +387,22 @@ section h3{
     text-align: left;
     margin-top: 20px;
 }
+.quiz-history a{
+    text-decoration: none;
+    color: white;
+    background: #2a9d8f;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.2s;
+    display: inline-block;
+    margin-top: 15px;
+
+}
+.quiz-history a:hover{
+    background: #e76f51;
+}
+
 
 /* ====================================
    Footer Styles

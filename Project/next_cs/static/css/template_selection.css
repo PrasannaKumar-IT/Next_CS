@@ -1,0 +1,174 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(90deg, #f0f8ff, #e6f7ff);
+    margin: 0;
+    padding: 0;
+}
+
+/* ====================================
+   Header and Navigation
+==================================== */
+header {
+    background: linear-gradient(90deg, #2a9d8f, #264653);  /* Primary: Teal Green */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+header .profile {
+    display: flex;
+    align-items: center;
+}
+
+header .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Navbar Menu Icon on Right */
+header .menu {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+header .menu-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Dropdown Width Adjustment */
+header .menu .dropdown {
+    list-style: none;
+    padding: 0;
+    display: none;
+    background: linear-gradient(90deg, #2a9d8f, #264653); /* Primary */
+    position: absolute;
+    right: 0;
+    top: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto; 
+    min-width: 160px;
+    z-index: 1000;
+}
+
+header .menu .dropdown li {
+    padding: 10px 15px;
+}
+
+header .menu .dropdown li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+header .menu .dropdown li:hover {
+    background: #e76f51; /* Secondary: Warm Coral */
+}
+
+header .menu:hover .dropdown {
+    display: block;
+}
+
+
+h2 {
+    color: #003366;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.template-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.template-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(50% - 40px); /* Two cards per row with some spacing */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.template-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.template-card form {
+    margin-top: 10px;
+}
+
+.template-card button {
+    padding: 10px 20px;
+    background-color: #006699;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.template-card button:hover {
+    background-color: #004466;
+}
+
+/* Responsive: one column on small screens */
+@media (max-width: 768px) {
+    .template-card {
+        width: 100%;
+    }
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(90deg, #2a9d8f, #264653); /* Teal Green */
+    color: #ffffff;
+    padding: 10px 0;
+    border-top: 2px solid #ffffff;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Social Icons */
+footer .social-icons {
+    margin-top: 5px;
+}
+
+footer .social-icons a {
+    color: #ffffff;
+    font-size: 1rem;
+    margin: 0 10px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+
+footer .social-icons a:hover {
+    color: #ffdd57; /* Light Yellow */
+    transform: scale(1.2) rotate(10deg);
+}

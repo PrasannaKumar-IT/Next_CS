@@ -1,25 +1,28 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout,get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from django.http import JsonResponse
-from django.views import View
-from .models import CustomUser, QuizScore
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model  # ✅ Import this
 import requests
 import sys
 import json
 import random
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from reportlab.lib.pagesizes import letter
+from django.db.models import Q
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from xhtml2pdf import pisa
+from .models import CustomUser, Message, UserConnection,ConnectionRequest,Resume, QuizScore
+User = get_user_model()  
 
 def home(request):
     return render(request, 'home.html')
-
-
-def about(request):
-    return render(request, 'about.html')
-
 
 def contact(request):
     return render(request, 'contact.html')
@@ -50,7 +53,6 @@ def register(request):
 
     return render(request, 'register.html')
 
-
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -70,6 +72,24 @@ def login(request):
 
     return render(request, 'login.html')
 
+def admin_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None and user.is_staff:
+            auth_login(request, user)
+            messages.success(request, "Admin login successful!")
+            return redirect('admin_dashboard')
+        else:
+            messages.error(request, "Invalid credentials or unauthorized access.")
+            
+    return render(request, 'admin_login.html')
+
+def is_admin(user):
+    return user.is_authenticated and user.is_staff  # Ensures only staff users can access
 
 @login_required
 def profile_setup(request):
@@ -105,16 +125,6 @@ def profile_setup(request):
 
     return render(request, "profile.html")
 
-
-
-
-def logout_view(request):
-    logout(request)
-    messages.success(request, "You have been logged out.")
-    return redirect('login')
-
-
-
 @login_required
 def dashboard(request):
     user = request.user 
@@ -136,7 +146,7 @@ def dashboard(request):
     try:
         response = requests.get("https://remoteok.io/api")
         if response.status_code == 200:
-            job_data = response.json()[1:9]  
+            job_data = response.json()[1:11]  
             for job in job_data:
                 job_details.append({
                     "title": job.get("position", "Unknown Role"),
@@ -189,6 +199,7 @@ def dashboard(request):
     }
 
     return render(request, "dashboard.html", {"user_data": user_data})
+
 @login_required
 def learning_hub(request):
     user = request.user  
@@ -199,30 +210,6 @@ def learning_hub(request):
     } 
     return render(request, 'learning.html',{"user_data": user_data})
 
-
-def admin_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None and user.is_staff:
-            auth_login(request, user)
-            messages.success(request, "Admin login successful!")
-            return redirect('admin_dashboard')
-        else:
-            messages.error(request, "Invalid credentials or unauthorized access.")
-            
-    return render(request, 'admin_login.html')
-
-User = get_user_model()  # This will now use core.CustomUser
-
-# Function to check if the user is an admin
-def is_admin(user):
-    return user.is_authenticated and user.is_staff  # Ensures only staff users can access
-
-# Admin Dashboard View
 @login_required
 def admin_dashboard(request):
     total_users = User.objects.count()  # ✅ Now using core.CustomUser
@@ -238,7 +225,6 @@ def admin_dashboard(request):
     }
     return render(request, 'admin_dashboard.html', context)
 
-# API Endpoint for User Growth Chart Data
 @login_required
 def user_growth_chart(request):
     """Generate user growth data for the past 6 months."""
@@ -251,11 +237,11 @@ def user_growth_chart(request):
         data.append(User.objects.filter(date_joined__month=month.month).count())  # ✅ Now using core.CustomUser
 
     return JsonResponse({'labels': labels[::-1], 'data': data[::-1]}) 
+
 @login_required
 def admin_logout(request):
     logout(request)
     return redirect('admin_login')
-
 @login_required
 def job_search(request):
     url = "https://jsearch.p.rapidapi.com/search"
@@ -319,3 +305,286 @@ def job_search(request):
         "unique_job_roles": sorted(job_roles),
         "user_data": user_data
     })
+
+@login_required
+def save_resume(request):
+    if request.method == 'POST':
+        resume = Resume(
+            name=request.POST.get('name'),
+            email=request.POST.get('email'),
+            phone=request.POST.get('phone'),
+            address=request.POST.get('address'),
+
+            # Education
+            school_name=request.POST.get('school_name'),
+            school_percentage=request.POST.get('school_percentage'),
+            school_year=request.POST.get('school_year'),
+
+            college_name=request.POST.get('college_name'),
+            college_percentage=request.POST.get('college_percentage'),
+            college_year=request.POST.get('college_year'),
+
+            # Projects
+            project_title_1=request.POST.get('project_title_1'),
+            project_description_1=request.POST.get('project_description_1'),
+            project_title_2=request.POST.get('project_title_2'),
+            project_description_2=request.POST.get('project_description_2'),
+
+            # Certifications
+            certification_1=request.POST.get('certification_1'),
+            certification_2=request.POST.get('certification_2'),
+
+            # Skills
+            skills=request.POST.get('skills'),
+            soft_skills=request.POST.get('soft_skills'),
+            languages=request.POST.get('languages'),
+
+            # Photo
+            profile_pic=request.FILES.get('photo'),
+        )
+        resume.save()
+        return redirect('template_selection', resume_id=resume.id)
+    return render(request, 'resume_builder.html')
+
+@login_required
+def resume_builder(request):
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+    return render(request, 'resume_builder.html' ,{"user_data": user_data})
+
+@login_required
+def template_selection(request, resume_id):
+    resume = Resume.objects.get(id=resume_id)
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+    return render(request, 'template_selection.html', {'resume': resume,"user_data": user_data})
+@login_required
+
+def generate_resume_pdf(request):
+    if request.method == 'POST':
+        template_id = request.POST.get('template_id')
+        latest_resume = Resume.objects.last()
+
+        if not latest_resume:
+            return HttpResponse("No resume found.")
+
+        template_name = f"resume_templates/template{template_id}.html"
+        html_content = render_to_string(template_name, {'resume': latest_resume})
+
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = f'inline; filename=resume_template_{template_id}.pdf'
+
+        pisa_status = pisa.CreatePDF(html_content, dest=response)
+        if pisa_status.err:
+            return HttpResponse('Error while generating PDF')
+        return response
+
+    return redirect('resume_builder')  # fallback if GET
+@login_required
+
+def new_connections_view(request):
+    users = User.objects.exclude(id=request.user.id)
+    # Search logic (optional)
+    query = request.GET.get("q")
+    if query:
+        users = users.filter(username__icontains=query) | users.filter(email__icontains=query)
+
+    # Fetch incoming requests
+    incoming_requests = ConnectionRequest.objects.filter(receiver=request.user, status="pending")
+
+    # Fetch outgoing requests
+    pending_requests = ConnectionRequest.objects.filter(sender=request.user, status="pending")
+    pending_receiver_ids = list(pending_requests.values_list("receiver_id", flat=True))
+    connected_user_ids = list(
+    UserConnection.objects.filter(user=request.user).values_list("connection_id", flat=True)
+)
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+    context = {
+        "users": users,
+        "pending_receiver_ids": pending_receiver_ids,
+        "incoming_requests": incoming_requests,
+        "connected_user_ids": connected_user_ids,
+        'user_data': user_data
+    }
+    return render(request, "new_connections.html", context)
+@login_required
+
+def send_request_view(request, user_id):
+    receiver = get_object_or_404(CustomUser, id=user_id)
+    # Check if already sent
+    if not ConnectionRequest.objects.filter(sender=request.user, receiver=receiver).exists():
+        ConnectionRequest.objects.create(sender=request.user, receiver=receiver)
+    return redirect('new-connections')
+@login_required
+
+def handle_request_view(request, request_id, action):
+    conn_request = get_object_or_404(ConnectionRequest, id=request_id, receiver=request.user)
+    if action == "accept":
+        conn_request.status = "accepted"
+        conn_request.save()
+        # Create UserConnection
+        from .models import UserConnection
+        UserConnection.objects.create(user=conn_request.sender, connection=conn_request.receiver)
+        UserConnection.objects.create(user=conn_request.receiver, connection=conn_request.sender)
+    elif action == "reject":
+        conn_request.status = "rejected"
+        conn_request.save()
+    return redirect('new-connections')
+@login_required
+
+def accept_connection_request(request, request_id):
+    connection_request = get_object_or_404(ConnectionRequest, id=request_id, receiver=request.user)
+
+    if connection_request.status == 'pending':
+        connection_request.status = 'accepted'
+        connection_request.save()
+
+        # Create mutual UserConnection records
+        UserConnection.objects.create(user=connection_request.sender, connection=connection_request.receiver)
+        UserConnection.objects.create(user=connection_request.receiver, connection=connection_request.sender)
+
+    return redirect('new-connections')  # or use your actual connection page URL name
+@login_required
+
+def reject_connection_request(request, request_id):
+    connection_request = get_object_or_404(ConnectionRequest, id=request_id, receiver=request.user)
+
+    if connection_request.status == 'pending':
+        connection_request.status = 'rejected'
+        connection_request.save()
+
+    return redirect('new-connections')  # or use your actual connection page URL name
+
+@login_required
+def chat_view(request, user_id=None):
+    current_user = request.user
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+    # Get connected users
+    connections = UserConnection.objects.filter(user=current_user).values_list('connection', flat=True)
+    connected_users = CustomUser.objects.filter(id__in=connections)
+
+    selected_user = None
+    messages = []
+
+    if user_id:
+        selected_user = get_object_or_404(CustomUser, id=user_id)
+        if selected_user.id in connections:
+            # Get messages between users
+            messages = Message.objects.filter(
+                (Q(sender=current_user, receiver=selected_user) |
+                 Q(sender=selected_user, receiver=current_user))
+            )
+
+    if request.method == 'POST' and selected_user:
+        content = request.POST.get('message')
+        if content:
+            Message.objects.create(sender=current_user, receiver=selected_user, content=content)
+            return redirect('chat', user_id=selected_user.id)
+
+    context = {
+        'connected_users': connected_users,
+        'selected_user': selected_user,
+        'messages': messages,
+        'user_data': user_data
+    }
+    
+    return render(request, 'chat.html',context)
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "You have been logged out.")
+    return redirect('login')
+
+from django.shortcuts import render, redirect
+from .models import QuizCategory, QuizQuestion
+from django.contrib.auth.decorators import login_required
+from .models import UserQuizHistory
+
+@login_required
+def quiz_categories_view(request):
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    }
+    categories = QuizCategory.objects.all()
+    return render(request, 'quiz_categories.html', {'categories': categories,"user_data": user_data})
+
+@login_required
+def start_quiz_view(request, category_id):
+    category = get_object_or_404(QuizCategory, id=category_id)
+    questions = QuizQuestion.objects.filter(category=category)
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+    if request.method == 'POST':
+        score = 0
+        total = questions.count()
+        for q in questions:
+            selected = request.POST.get(str(q.id))
+            if selected == q.correct_option:
+                score += 1
+
+        # Save to history
+        UserQuizHistory.objects.create(
+            user=request.user,
+            category=category,
+            score=score,
+            total_questions=total
+        )
+
+        # Basic recommendation logic
+        if score < total * 0.5:
+            suggestion_text = f"You might want to review {category.name} basics."
+            suggestion_url = f"/learn/?topic={category.name}"  # Link to your Learning Platform
+        else:
+            suggestion_text = f"Great job! You can try more advanced topics in {category.name}."
+            suggestion_url = f"/learn/?topic={category.name}"
+        
+        return render(request, 'quiz_result.html', {
+            'category': category,
+            'score': score,
+            'total': total,
+            'suggestion_text': suggestion_text,
+            'suggestion_url': suggestion_url,
+            'user_data': user_data,
+        })
+
+    return render(request, 'quiz_questions.html', {
+        'category': category,
+        'questions': questions,
+        'user_data': user_data
+    })
+
+@login_required
+def quiz_history(request):
+    user = request.user  
+    profile_pic_url = user.profile_picture.url if user.profile_picture else "/static/image/default profile pic.jpg"
+    user_data = {
+        "username": user.username,
+        "profile_pic": profile_pic_url,
+    } 
+    history = UserQuizHistory.objects.filter(user=request.user).order_by('-date_taken')
+    return render(request, 'quiz_history.html', {'history': history,'user_data': user_data})

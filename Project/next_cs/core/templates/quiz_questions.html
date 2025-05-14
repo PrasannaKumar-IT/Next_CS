@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <link rel="icon" href="{% static 'image/Next-cs logo.png' %}" type="image/x-icon">
+  <title>Next-cs | Quiz Hub {{ category.name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/quiz_questions.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="profile">
+            <img src="{{ user_data.profile_pic|default:'/static/image/default_profile_pic.jpg' }}" alt="Profile Picture">
+            <span>{{ user_data.username }}</span>
+        </div>
+        <div class="menu">
+            
+            <button class="menu-btn">☰</button>
+            <ul class="dropdown">
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'learning_hub' %}">Learning Hub</a></li>
+                <li><a href="{% url 'job_search' %}">Job Search</a></li>
+                <li><a href="{% url 'resume_builder' %}">Resume Builder</a></li>
+                <li><a href="{% url 'new-connections' %}">Connect Campus</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+  <div class="container">
+    <div class="header">
+      <h2>Quiz: {{ category.name }}</h2>
+      <div class="timer">⏱ <span id="time">60</span>s</div>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      {% for q in questions %}
+        <div class="question-card">
+          <div class="question-count">Question {{ forloop.counter }} of {{ questions|length }}</div>
+          <div class="question-text">{{ q.question }}</div>
+          <div class="options">
+            <label><input type="radio" name="{{ q.id }}" value="A"> {{ q.option_a }}</label>
+            <label><input type="radio" name="{{ q.id }}" value="B"> {{ q.option_b }}</label>
+            <label><input type="radio" name="{{ q.id }}" value="C"> {{ q.option_c }}</label>
+            <label><input type="radio" name="{{ q.id }}" value="D"> {{ q.option_d }}</label>
+          </div>
+        </div>
+      {% endfor %}
+      <button class="submit-btn" type="submit">Submit Quiz</button>
+    </form>
+  </div>
+
+  <script>
+    let timeLeft = 60;
+    const timerDisplay = document.getElementById("time");
+
+    const countdown = setInterval(() => {
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        document.forms[0].submit();
+      } else {
+        timeLeft--;
+        timerDisplay.innerText = timeLeft;
+      }
+    }, 1000);
+  </script>
+<footer class=" text-light text-center p-3">
+  <p>&copy; 2025 Next-CS. All rights reserved.</p>
+  <div class="social-icons">
+      <a href="#"><i class="bi bi-facebook me-2"></i></a>
+      <a href="#"><i class="bi bi-twitter me-2"></i></a>
+      <a href="#"><i class="bi bi-linkedin me-2"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+  </div>
+</footer>
+</body>
+</html>

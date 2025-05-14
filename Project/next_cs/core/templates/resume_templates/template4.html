@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ resume.name }} - Resume</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .sidebar {
+      background-color: #003366;
+      color: white;
+      width: 30%;
+      padding: 30px 20px;
+    }
+
+    .main {
+      width: 70%;
+      padding: 30px;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #fff;
+    }
+
+    .sidebar p, .sidebar ul {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .main h1 {
+      font-size: 28px;
+      color: #003366;
+      margin-bottom: 10px;
+    }
+
+    .main h2 {
+      font-size: 20px;
+      color: #006699;
+      border-bottom: 1px solid #ccc;
+      margin: 20px 0 10px;
+    }
+
+    .main p {
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    .main ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .main ul li {
+      margin-bottom: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    {% if resume.profile_pic %}
+      <img src="{{ resume.profile_pic.url }}" alt="Profile Picture" class="profile-pic">
+    {% endif %}
+    <h2>Contact</h2>
+    <p><strong>Email:</strong><br>{{ resume.email }}</p>
+    <p><strong>Phone:</strong><br>{{ resume.phone }}</p>
+    <p><strong>Address:</strong><br>{{ resume.address }}</p>
+
+    <h2>Skills</h2>
+    <p>{{ resume.skills }}</p>
+
+    <h2>Soft Skills</h2>
+    <p>{{ resume.soft_skills }}</p>
+
+    <h2>Languages</h2>
+    <p>{{ resume.languages }}</p>
+  </div>
+
+  <div class="main">
+    <h1>{{ resume.name }}</h1>
+
+    <h2>Education</h2>
+    <p><strong>School:</strong> {{ resume.school_name }} ({{ resume.school_year }}) - {{ resume.school_percentage }}%</p>
+    <p><strong>College:</strong> {{ resume.college_name }} ({{ resume.college_year }}) - {{ resume.college_percentage }}%</p>
+
+    <h2>Projects</h2>
+    {% if resume.project_title_1 %}
+      <p><strong>{{ resume.project_title_1 }}</strong>: {{ resume.project_description_1 }}</p>
+    {% endif %}
+    {% if resume.project_title_2 %}
+      <p><strong>{{ resume.project_title_2 }}</strong>: {{ resume.project_description_2 }}</p>
+    {% endif %}
+
+    <h2>Certifications</h2>
+    <ul>
+      {% if resume.certification_1 %}<li>{{ resume.certification_1 }}</li>{% endif %}
+      {% if resume.certification_2 %}<li>{{ resume.certification_2 }}</li>{% endif %}
+    </ul>
+
+    {% if resume.achievements %}
+      <h2>Achievements</h2>
+      <p>{{ resume.achievements }}</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>
