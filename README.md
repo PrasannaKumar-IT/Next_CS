@@ -151,9 +151,8 @@ python manage.py runserver
 
 For any queries or collaboration:
 
-- 📧 Email: [youremail@example.com]
-- 🧑‍💻 GitHub: [github.com/yourusername]
-- 🌐 Website: [optional]
-
+- 📧 Email: prasannakumarmscit@gmail.com
+- 🧑‍💻 GitHub: [github.com/PrasannaKumar-IT](<https://github.com/PrasannaKumar-IT)>)
+  
 ---
 
