@@ -121,7 +121,7 @@ next_cs/
 ### Steps:
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/next-cs.git
+git clone https://github.com/PrasannaKumar-IT/next-cs.git
 cd next-cs
 
 # Install dependencies
